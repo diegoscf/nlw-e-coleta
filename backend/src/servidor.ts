@@ -1,15 +1,17 @@
 import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import rotas from './rotas';
 
 const app = express();
 
-app.get('/usuarios', (requisicao, resposta) => {
-    console.log('node funfando');
+app.use(cors({
+    // origin: 'www.meudominio.com.br'
+    origin: 'http://localhost:2301'
+}));
+app.use(express.json());
+app.use(rotas);
 
+app.use('/imagens', express.static(path.resolve(__dirname, '..', 'imagens')));
 
-    resposta.send('Hallo! Wie gehts dir?'); // formato texto
-    // resposta.json([
-    //     'Diego', 'Silva', 'Costa', 'Figueirêdo'
-    // ]);
-});
-
-app.listen(2301); // padrão é 3333
+app.listen(2301); 

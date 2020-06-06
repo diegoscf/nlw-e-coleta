@@ -12,7 +12,7 @@ class PontoController {
             long,
             uf,
             cidade,
-            items
+            itens
         } = req.body;
     
         const trx = await knex.transaction(); //trx é var padrão e substitui o knex nos inserts
@@ -38,7 +38,7 @@ class PontoController {
     
         const ponto_id = idsPontosInseridos[0];
     
-        const itensPontos = items.map((item_id: number) => {
+        const itensPontos = itens.map((item_id: number) => {
             return {
                 item_id,
                 ponto_id

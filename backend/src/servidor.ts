@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors({
     // origin: 'www.meudominio.com.br'
-    origin: 'http://localhost:2301'
+    origin: 'http://localhost:3000'
 }));
 app.use(express.json());
 app.use(rotas);

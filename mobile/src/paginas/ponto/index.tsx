@@ -14,7 +14,7 @@ import api from '../../servicos/api';
 interface Item {
   id: number;
   titulo: string;
-  img_url: string
+  img_url: string;
 }
 
 interface PontoColeta {

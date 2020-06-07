@@ -11,13 +11,12 @@ const Home = () => {
     const navegacao = useNavigation();
 
     function navegarParaPonto() {
-        navegacao.navigate('Ponto');
+        navegacao.navigate('Ponto', {uf, cidade});
     }
 
     const [uf, setUf] = useState('');
     const [cidade, setCidade] = useState('');
   
-
     return (
         <ImageBackground 
             source={require('../../assets/home-background.png')} 

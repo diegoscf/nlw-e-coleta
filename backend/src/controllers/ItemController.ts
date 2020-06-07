@@ -5,7 +5,7 @@ class ItemController {
     async listar(requisicao: Request, resposta: Response) {
         const itens = await knex('itens').select('*');
 
-        const itensFormatados = itens.map(item => {
+        const itensSerializados = itens.map(item => {
             return {
                 id: item.id,
                 titulo: item.titulo,
@@ -16,7 +16,7 @@ class ItemController {
             };
         });
 
-        return resposta.json(itensFormatados);
+        return resposta.json(itensSerializados);
     }
 }
 

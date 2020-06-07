@@ -2,14 +2,15 @@ import React, {useEffect, useState, ChangeEvent, FormEvent} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {FiArrowLeft} from 'react-icons/fi';
 import { Map, TileLayer, Marker } from 'react-leaflet';
+import { LeafletMouseEvent } from 'leaflet';
 
 import api from '../../servicos/api';
 import apiIBGE from '../../servicos/apiIBGE';
+import Dropzone from '../../components/dropzone';
 
 import './estilo.css';
-
 import logo from '../../assets/logo.svg';
-import { LeafletMouseEvent } from 'leaflet';
+
 
 interface Item {
     id: number;
@@ -41,6 +42,7 @@ const CriarPonto = () => {
     const [itens, setItens]     = useState<Item[]>([]);
     const [estados, setEstados] = useState<Estado[]>([]);
     const [cidades, setCidades] = useState<Municipio[]>([]);
+    const [arquivoSelecionado, setArquivoSelecionado] = useState<File>();
 
     const [estadoSelecionado, setEstadoSelecionado] = useState<number>(0);
     const [cidadeSelecionada, setCidadeSelecionada] = useState<number>(0);
@@ -128,16 +130,22 @@ const CriarPonto = () => {
     async function enviar(event: FormEvent) {
         event.preventDefault();
 
-        const {nome, email, whatsapp} = dadosFormulario;
-        const uf = estadoSelecionado;
-        const cidade = cidadeSelecionada;
+        const {
+            nome, 
+            email, 
+            whatsapp
+        }                 = dadosFormulario;
+        const imagem      = arquivoSelecionado;
+        const uf          = estadoSelecionado;
+        const cidade      = cidadeSelecionada;
         const [lat, long] = pontoMapa;
-        const itens = itensSelecionados;
+        const itens       = itensSelecionados;
         
         await api.post(
             '/pontos', 
             {
                 nome,
+                imagem,
                 email,
                 whatsapp,
                 uf,
@@ -165,6 +173,8 @@ const CriarPonto = () => {
 
             <form onSubmit={enviar}>
                 <h1>Cadastro do <br />Ponto de Coleta</h1>
+
+                <Dropzone aoCarregarArquivo={setArquivoSelecionado} />
 
                 <fieldset>
                     <legend>

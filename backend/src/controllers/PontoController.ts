@@ -62,6 +62,11 @@ class PontoController {
             return resp.status(400).json({mensagem: 'Ponto de Coleta não encontrado'});
         }
 
+        const pontoSerializado = {
+                ...ponto,
+                img_url: `http://192.168.1.107:2301/imagens/${ponto.imagem}`
+        };
+
         const itens = await knex('itens')
         .join('itens_pontos', 'itens.id', '=', 'itens_pontos.item_id')
         .where('itens_pontos.ponto_id', id)
@@ -87,7 +92,14 @@ class PontoController {
             .distinct()
             .select('pontos.*');
 
-        return resp.json(pontos);
+        const pontosSerializados = pontos.map(ponto => {
+            return {
+                ...ponto,
+                img_url: `http://192.168.1.107:2301/imagens/${ponto.imagem}`
+            };
+        });
+
+        return resp.json(pontosSerializados);
     }
 }
 

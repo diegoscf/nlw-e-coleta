@@ -33,6 +33,7 @@ const Home = () => {
 
             <View style={estilos.footer}>
 
+                <Text>https://www.npmjs.com/package/react-native-picker-select</Text>
                 <TextInput 
                     style={estilos.input}
                     placeholder="Digite a UF"

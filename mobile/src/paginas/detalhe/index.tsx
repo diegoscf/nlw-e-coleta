@@ -16,6 +16,7 @@ interface DadosDoPonto {
   ponto: {
     id: number;
     imagem: string;
+    img_url: string;
     whatsapp: string;
     email: string;
     nome: string;
@@ -68,7 +69,7 @@ const Detalhe = () => {
         <TouchableOpacity onPress={navegarParaPonto}>
           <Feather name="arrow-left" color="#34cb79" size={24} />
         </TouchableOpacity>
-        <Image style={styles.pointImage} source={{uri: dadosPonto.ponto.imagem}}/>
+        <Image style={styles.pointImage} source={{uri: dadosPonto.ponto.img_url}}/>
 
         <Text style={styles.pointName}>{dadosPonto.ponto.nome}</Text>
         <Text style={styles.pointItems}>

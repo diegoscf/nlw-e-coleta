@@ -21,6 +21,7 @@ interface PontoColeta {
   id: number;
   nome: string;
   imagem: string;
+  img_url: string;
   whatsapp: string;
   email: string;
   uf: string;
@@ -140,7 +141,7 @@ const Ponto = () => {
                   onPress={() => navegarParaDetalhe(ponto.id)}
                 >
                   <View style={styles.mapMarkerContainer}>
-                    <Image style={styles.mapMarkerImage} source={{ uri: ponto.imagem }} />
+                    <Image style={styles.mapMarkerImage} source={{ uri: ponto.img_url }} />
                     <Text style={styles.mapMarkerTitle}>{ponto.nome}</Text>
                   </View>
                 </Marker>

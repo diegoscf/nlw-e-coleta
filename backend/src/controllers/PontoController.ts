@@ -6,6 +6,7 @@ class PontoController {
         // {} = req.body é o mesmo que atribuir cada item ex: const nome = req.body.nome; 
         const {
             nome,
+            imagem,
             email,
             whatsapp,
             lat,
@@ -19,7 +20,7 @@ class PontoController {
     
         // abaixo tem o uso de short syntax: propriedade = variavel, não precisa atribuir ex: nome: nome
         const idsPontosInseridos = await trx('pontos').insert({
-            imagem: 'como-nao-tem-upload-fica-um-fake',
+            imagem,
             nome,
             email,
             whatsapp,

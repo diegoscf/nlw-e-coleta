@@ -8,8 +8,8 @@ export async function up(knex: Knex): Promise<any> {
         table.string('nome').notNullable();
         table.string('email').notNullable();
         table.string('whatsapp').notNullable();
-        table.string('lat').notNullable();
-        table.string('long').notNullable();
+        table.decimal('lat').notNullable();
+        table.decimal('long').notNullable();
         table.string('uf').notNullable();
         table.string('cidade', 2).notNullable();
     });
